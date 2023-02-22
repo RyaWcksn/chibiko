@@ -6,15 +6,51 @@ Chibiko, URL shortener written in GO and store the URL inside MySQL database
 
 ** Documentation
 
-**Endpoints**
+*Endpoints*
 
 There's serveral endpoint interface that user can interact with, they are :
 
-|----------+-----------------------------------------|
-| Url      | Decscription                            |
-|----------+-----------------------------------------|
-| /endcode | Endcode the url given in body payload   |
-| /{code}  | Redirecting code to the actual endpoint |
+|--------+----------+-----------------------------------------|
+| Method | Urls     | Descriptions                            |
+|--------+----------+-----------------------------------------|
+| POST   | /endcode | Endcode the url given in body payload   |
+| GET    | /{code}  | Redirecting code to the actual endpoint |
 
 
+** Usages
 
+Standard Payload and Response for the APIs
+
+*** Encode
+
+**** Request
+
+| Json request | Descriptions                                                                         | Type data |
+|--------------+--------------------------------------------------------------------------------------+-----------|
+| url          | Target URL that want to decode *Mandatory*                                           | String    |
+| isTemporary  | If this form not empty, the url will be temporary for the desirable time (in second) | Int       |
+
+**** Response
+
+| Http code | Message | Object                        | Description                    |
+|-----------+---------+-------------------------------+--------------------------------|
+|       201 | ok      | someEncodedUrl                | Success and the url is encoded |
+|       401 | error   | field ... is missing or error | Request error                  |
+|       500 | error   | internal server error         | Server side error              |
+
+
+*** Redirect
+
+**** Request
+
+| Parameter          | Descriptions                                 | Type data |
+|--------------------+----------------------------------------------+-----------|
+| {encodedParameter} | Encoded URL that already decoded *Mandatory* | String    |
+
+**** Response
+
+| Http code | Message | Object                        | Description                    |
+|-----------+---------+-------------------------------+--------------------------------|
+|       200 | ok      | someEncodedUrl                | Success and the url is encoded |
+|       401 | error   | field ... is missing or error | Request error                  |
+|       500 | error   | internal server error         | Server side error              |
