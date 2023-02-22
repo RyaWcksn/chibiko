@@ -1,0 +1,15 @@
+{
+    "database":{
+	"host":"127.0.0.1",
+	"port":"33061",
+	"database":"url",
+	"password":"urlpass",
+	"username":"urluser"
+    },
+    "redis":{
+	"host":"127.0.0.1",
+	"database":"1",
+	"password":"urlredis"
+    },
+    "prefix":"http://127.0.0.1:8080/",
+}

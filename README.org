@@ -1,0 +1,20 @@
+* Chibiko
+
+[[./banner.png]]
+
+Chibiko, URL shortener written in GO and store the URL inside MySQL database
+
+** Documentation
+
+**Endpoints**
+
+There's serveral endpoint interface that user can interact with, they are :
+
+|----------+-----------------------------------------|
+| Url      | Decscription                            |
+|----------+-----------------------------------------|
+| /endcode | Endcode the url given in body payload   |
+| /{code}  | Redirecting code to the actual endpoint |
+
+
+
