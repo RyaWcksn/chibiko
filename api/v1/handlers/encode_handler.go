@@ -16,12 +16,12 @@ func (h *HandlerImpl) Encode(w http.ResponseWriter, r *http.Request) error {
 	var payload forms.EncodeRequest
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
-		log.Fatalf("Error from ", err)
+		log.Fatalf("Error from %v", err)
 		return err
 	}
 
 	if err = json.Unmarshal(body, &payload); err != nil {
-		log.Fatalf("Error from ", err)
+		log.Fatalf("Error from %v", err)
 		return err
 	}
 
