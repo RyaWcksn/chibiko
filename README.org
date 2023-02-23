@@ -1,5 +1,3 @@
-* Chibiko
-
 [[./banner.png]]
 
 Chibiko, URL shortener written in GO and store the URL inside MySQL database
