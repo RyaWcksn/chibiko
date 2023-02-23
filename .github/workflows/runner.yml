@@ -37,7 +37,7 @@ jobs:
       run: go test -v ./...
       
     - name: Release
-    - run: |
+      run: |
       	npm install @semantic-release/changelog -D
 	npx semantic-release
       env:
