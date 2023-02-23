@@ -37,8 +37,6 @@ jobs:
       run: go test -v ./...
       
     - name: Release
-      run: |
-      	npm install @semantic-release/changelog -D
-	npx semantic-release
+      run: npx semantic-release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
