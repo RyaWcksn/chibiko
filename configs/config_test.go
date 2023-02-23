@@ -22,24 +22,14 @@ func TestReadFromFile(t *testing.T) {
 				path: "./config.json",
 			},
 			wantConf: &Config{
-				Database: struct {
-					Host     string "json:\"host\""
-					Port     string "json:\"port\""
-					Database string "json:\"database\""
-					Password string "json:\"password\""
-					Username string "json:\"username\""
-				}{
+				Database: Database{
 					Host:     "127.0.0.1",
-					Port:     "33061",
+					Port:     33061,
 					Database: "url",
 					Password: "urlpass",
 					Username: "urluser",
 				},
-				Redis: struct {
-					Host     string "json:\"host\""
-					Password string "json:\"password\""
-					Database string "json:\"database\""
-				}{
+				Redis: Redis{
 					Host:     "127.0.0.1",
 					Password: "urlredis",
 					Database: "1",
