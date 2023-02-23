@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"net/http"
-	"net/http/httptest"
 	"testing"
 )
 
@@ -16,17 +15,7 @@ func TestHandlerImpl_Encode(t *testing.T) {
 		h       *HandlerImpl
 		args    args
 		wantErr bool
-	}{
-		{
-	name: "",
-	h:    &HandlerImpl{},
-	args: args{
-		w: nil,
-		r: &httptest.NewRequest(http.MethodPost, , body io.Reader),
-	},
-	wantErr: false,
-},
-	}
+	}{}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			h := &HandlerImpl{}
