@@ -29,8 +29,7 @@ func (fn ErrHandler) serveHTTP(w http.ResponseWriter, r *http.Request) {
 			Response: err.Error(),
 		}
 		w.WriteHeader(xerr.Code)
-		_ = json.NewEncoder(w).Encode(xerr)
-		return
+		json.NewEncoder(w).Encode(xerr)
 	}
 
 }
