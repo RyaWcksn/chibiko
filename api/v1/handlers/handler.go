@@ -22,6 +22,7 @@ func NewHandler(cfg configs.Config, usecase usecases.IUsecase) *HandlerImpl {
 
 type IHandler interface {
 	Encode(w http.ResponseWriter, r *http.Request) error
+	Decode(w http.ResponseWriter, r *http.Request) error
 }
 
 var _ IHandler = (*HandlerImpl)(nil)

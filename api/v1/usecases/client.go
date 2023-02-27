@@ -13,6 +13,7 @@ type UsecaseImpl struct {
 
 type IUsecase interface {
 	Encode(ctx context.Context, payload *forms.EncodeRequest) (resp string, err error)
+	Decode(ctx context.Context, payload *forms.DecodePayload) (resp string, err error)
 }
 
 // NewUsecase initiate usecase layer

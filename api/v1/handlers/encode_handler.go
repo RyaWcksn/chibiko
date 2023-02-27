@@ -8,10 +8,15 @@ import (
 	"net/http"
 
 	"github.com/RyaWcksn/chibiko/forms"
+	"github.com/RyaWcksn/chibiko/pkgs/errors"
 )
 
 // Encode implements IHandler
 func (h *HandlerImpl) Encode(w http.ResponseWriter, r *http.Request) error {
+
+	if r.Method != http.MethodPost {
+		return errors.GetError(errors.InvalidRequest, fmt.Errorf("Error := %v", "Request method not allowed"))
+	}
 	ctx := r.Context()
 
 	var payload forms.EncodeRequest
@@ -24,6 +29,11 @@ func (h *HandlerImpl) Encode(w http.ResponseWriter, r *http.Request) error {
 	if err = json.Unmarshal(body, &payload); err != nil {
 		log.Fatalf("Error from %v", err)
 		return err
+	}
+
+	err = payload.Validate()
+	if err != nil {
+		return errors.GetError(errors.InvalidRequest, err)
 	}
 
 	encodeRes, err := h.Usecase.Encode(ctx, &payload)

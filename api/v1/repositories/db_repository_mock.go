@@ -35,6 +35,21 @@ func (m *MockIDatabase) EXPECT() *MockIDatabaseMockRecorder {
 	return m.recorder
 }
 
+// Get mocks base method.
+func (m *MockIDatabase) Get(ctx context.Context, entity *entities.GetDatabase) (string, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Get", ctx, entity)
+	ret0, _ := ret[0].(string)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Get indicates an expected call of Get.
+func (mr *MockIDatabaseMockRecorder) Get(ctx, entity interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Get", reflect.TypeOf((*MockIDatabase)(nil).Get), ctx, entity)
+}
+
 // Save mocks base method.
 func (m *MockIDatabase) Save(ctx context.Context, entity *entities.SaveDatabase) (int64, error) {
 	m.ctrl.T.Helper()
