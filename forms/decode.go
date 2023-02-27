@@ -6,12 +6,11 @@ import (
 	"github.com/go-playground/validator"
 )
 
-type EncodeRequest struct {
-	Url         string `json:"url" validate:"required"`
-	IsTemporary int    `json:"isTemporary"`
+type DecodePayload struct {
+	Param string
 }
 
-func (s *EncodeRequest) Validate() error {
+func (s *DecodePayload) Validate() error {
 	validate := validator.New()
 	err := validate.Struct(s)
 	if err != nil {

@@ -48,7 +48,8 @@ func New(cfg *configs.Config) *Server {
 }
 
 func (s Server) Start() {
-	http.Handle("/decode", middleware.ErrHandler(s.HandlerLayer.Encode))
+	http.Handle("/encode", middleware.ErrHandler(s.HandlerLayer.Encode))
+	http.Handle("/", middleware.ErrHandler(s.HandlerLayer.Decode))
 	if err := http.ListenAndServe(":8090", nil); err != nil {
 		panic(err)
 	}
