@@ -12,6 +12,14 @@ type HandlerImpl struct {
 	Usecase usecases.IUsecase
 }
 
+// NewHandler initiate handler impl.
+func NewHandler(cfg configs.Config, usecase usecases.IUsecase) *HandlerImpl {
+	return &HandlerImpl{
+		Config:  cfg,
+		Usecase: usecase,
+	}
+}
+
 type IHandler interface {
 	Encode(w http.ResponseWriter, r *http.Request) error
 }

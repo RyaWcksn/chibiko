@@ -2,7 +2,6 @@ package usecases
 
 import (
 	"context"
-	"errors"
 	"log"
 
 	"github.com/RyaWcksn/chibiko/entities"
@@ -23,7 +22,7 @@ func (uc *UsecaseImpl) Encode(ctx context.Context, payload *forms.EncodeRequest)
 	sqlResp, err := uc.dbPort.Save(ctx, &sqlPayload)
 	if err != nil {
 		log.Printf("error := %v", err)
-		return "", errors.New(ierror.InternalError)
+		return "", ierror.GetError(ierror.InternalServer, err)
 	}
 
 	res := encryptions.Encode(sqlResp)
