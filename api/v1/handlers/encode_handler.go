@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -11,7 +12,7 @@ import (
 
 // Encode implements IHandler
 func (h *HandlerImpl) Encode(w http.ResponseWriter, r *http.Request) error {
-	_ = r.Context()
+	ctx := r.Context()
 
 	var payload forms.EncodeRequest
 	body, err := io.ReadAll(r.Body)
@@ -25,5 +26,24 @@ func (h *HandlerImpl) Encode(w http.ResponseWriter, r *http.Request) error {
 		return err
 	}
 
-	return nil
+	encodeRes, err := h.Usecase.Encode(ctx, &payload)
+	if err != nil {
+		return err
+	}
+
+	url := fmt.Sprintf("%s%s", h.Config.Prefix, encodeRes)
+
+	res := struct {
+		Code    int    `json:"code"`
+		Message string `json:"message"`
+		Url     string `json:"url"`
+	}{
+		Code:    201,
+		Message: "ok",
+		Url:     url,
+	}
+	w.Header().Set("Content-Type", "application/json")
+
+	w.WriteHeader(http.StatusCreated)
+	return json.NewEncoder(w).Encode(res)
 }

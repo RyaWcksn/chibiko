@@ -2,9 +2,9 @@
     "database":{
 	"host":"127.0.0.1",
 	"port":33061,
-	"database":"url",
-	"password":"urlpass",
-	"username":"urluser"
+	"database":"urls",
+	"password":"p4ssw0rd2",
+	"username":"root"
     },
     "redis":{
 	"host":"127.0.0.1",

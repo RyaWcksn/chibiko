@@ -15,4 +15,11 @@ type IUsecase interface {
 	Encode(ctx context.Context, payload *forms.EncodeRequest) (resp string, err error)
 }
 
+// NewUsecase initiate usecase layer
+func NewUsecase(dbPort repositories.IDatabase) *UsecaseImpl {
+	return &UsecaseImpl{
+		dbPort: dbPort,
+	}
+}
+
 var _ IUsecase = (*UsecaseImpl)(nil)

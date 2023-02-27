@@ -7,6 +7,7 @@ import (
 	"github.com/RyaWcksn/chibiko/entities"
 	"github.com/RyaWcksn/chibiko/forms"
 	"github.com/RyaWcksn/chibiko/pkgs/encryptions"
+	ierror "github.com/RyaWcksn/chibiko/pkgs/errors"
 )
 
 // Encode implements IUsecase
@@ -21,7 +22,7 @@ func (uc *UsecaseImpl) Encode(ctx context.Context, payload *forms.EncodeRequest)
 	sqlResp, err := uc.dbPort.Save(ctx, &sqlPayload)
 	if err != nil {
 		log.Printf("error := %v", err)
-		return "", nil
+		return "", ierror.GetError(ierror.InternalServer, err)
 	}
 
 	res := encryptions.Encode(sqlResp)

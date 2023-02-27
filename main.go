@@ -1,7 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"github.com/RyaWcksn/chibiko/configs"
+	"github.com/RyaWcksn/chibiko/server"
+)
 
 func main() {
-	fmt.Println("Update")
+	cfg, err := configs.ReadFromFile("./configs/config.json")
+	if err != nil {
+		panic(err)
+	}
+	sv := server.New(cfg)
+	sv.Start()
 }
