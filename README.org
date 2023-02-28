@@ -4,6 +4,10 @@ Chibiko, URL shortener written in GO and store the URL inside MySQL database
 
 ** Documentation
 
+*Diagram*
+
+[[./Sequence.png]]
+
 *Endpoints*
 
 There's serveral endpoint interface that user can interact with, they are :
@@ -33,7 +37,7 @@ Standard Payload and Response for the APIs
 | Http code | Message | Object                        | Description                    |
 |-----------+---------+-------------------------------+--------------------------------|
 |       201 | ok      | someEncodedUrl                | Success and the url is encoded |
-|       401 | error   | field ... is missing or error | Request error                  |
+|       400 | error   | field ... is missing or error | Request error                  |
 |       500 | error   | internal server error         | Server side error              |
 
 
@@ -50,5 +54,5 @@ Standard Payload and Response for the APIs
 | Http code | Message | Object                        | Description                    |
 |-----------+---------+-------------------------------+--------------------------------|
 |       200 | ok      | someEncodedUrl                | Success and the url is encoded |
-|       401 | error   | field ... is missing or error | Request error                  |
+|       400 | error   | field ... is missing or error | Request error                  |
 |       500 | error   | internal server error         | Server side error              |
